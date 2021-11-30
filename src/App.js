@@ -1,6 +1,8 @@
+import './Sass/main.scss';
+
 export default function App() {
   return (
-    <div>
+    <div className={'container'}>
       <h1>Hello</h1>
     </div>
   );
