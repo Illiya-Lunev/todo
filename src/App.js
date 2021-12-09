@@ -1,9 +1,10 @@
 import './Sass/main.scss';
 import 'modern-normalize/modern-normalize.css';
 import { Component } from 'react';
-import TodoList from './components/TodoList/TodoList';
-import TodoFilter from './components/TodoFilter/TodoFilter';
-import TodoEditor from './components/TodoEditor/TodoEditor';
+import TodoList from './components/Todos/TodoList/TodoList';
+import TodoFilter from './components/Todos/TodoFilter/TodoFilter';
+import TodoEditor from './components/Todos/TodoEditor/TodoEditor';
+import Clock from './components/Clock/Clock';
 import shortid from 'shortid';
 
 export default class App extends Component {
@@ -11,6 +12,22 @@ export default class App extends Component {
     todos: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const todos = localStorage.getItem('todos');
+    const todosParse = JSON.parse(todos);
+    if (todosParse) {
+      this.setState({ todos: todosParse });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
+
+  componentWillUnmount() {}
 
   addTodo = text => {
     const todo = {
@@ -49,6 +66,7 @@ export default class App extends Component {
     const visibleTodos = this.getVisibleTodos();
     return (
       <div className={'container'}>
+        <Clock />
         <TodoEditor onSubmit={this.addTodo} />
         <TodoFilter value={filter} onChange={this.changeFilter} />
 
