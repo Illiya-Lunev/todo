@@ -5,11 +5,17 @@ export default class Clock extends Component {
     time: new Date().toLocaleTimeString(),
   };
 
+  intervalId = null;
+
   componentDidMount() {
-    setInterval(
+    this.intervalId = setInterval(
       () => this.setState({ time: new Date().toLocaleTimeString() }),
       1000,
     );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   render() {

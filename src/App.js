@@ -21,13 +21,11 @@ export default class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.todos !== prevState.todos) {
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
     }
   }
-
-  componentWillUnmount() {}
 
   addTodo = text => {
     const todo = {
@@ -61,12 +59,13 @@ export default class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, todos } = this.state;
 
     const visibleTodos = this.getVisibleTodos();
     return (
       <div className={'container'}>
         <Clock />
+
         <TodoEditor onSubmit={this.addTodo} />
         <TodoFilter value={filter} onChange={this.changeFilter} />
 
