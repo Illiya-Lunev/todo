@@ -59,7 +59,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { filter, todos } = this.state;
+    const { filter } = this.state;
 
     const visibleTodos = this.getVisibleTodos();
     return (

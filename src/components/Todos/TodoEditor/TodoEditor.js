@@ -25,7 +25,7 @@ export default class TodoForm extends Component {
     const { message } = this.state;
     return (
       <form className={'todo-editor__form'} onSubmit={this.handleSubmit}>
-        <label htmlFor={this.inputId} htmlFor={this.inputId}>
+        <label htmlFor={this.inputId}>
           Добавить
           <input
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
