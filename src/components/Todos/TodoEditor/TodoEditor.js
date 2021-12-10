@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import shortid from 'shortid';
+import Notiflix from 'notiflix';
 
 export default class TodoForm extends Component {
   state = { message: '' };
@@ -9,6 +10,9 @@ export default class TodoForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    if (this.state.message.trim() === '') {
+      return Notiflix.Notify.warning('Пожалуйста введите Ваш текст!');
+    }
     this.props.onSubmit(this.state.message);
     this.reset();
   };
@@ -33,7 +37,6 @@ export default class TodoForm extends Component {
             type="text"
             value={message}
             onChange={this.handleChange}
-            required
           />
         </label>
         <button type="submit">Сохранить</button>
