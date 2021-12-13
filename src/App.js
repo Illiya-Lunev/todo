@@ -6,8 +6,7 @@ import TodoFilter from './components/Todos/TodoFilter/TodoFilter';
 import TodoEditor from './components/Todos/TodoEditor/TodoEditor';
 import Clock from './components/Clock/Clock';
 import shortid from 'shortid';
-
-// import ApiServise from './Api/Apiservise';
+import Weather from './components/Weather/weather';
 
 export default class App extends Component {
   state = {
@@ -67,6 +66,7 @@ export default class App extends Component {
     return (
       <div className={'container'}>
         <Clock />
+        <Weather />
 
         <TodoEditor onSubmit={this.addTodo} />
         <TodoFilter value={filter} onChange={this.changeFilter} />
